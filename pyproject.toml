@@ -1,0 +1,9 @@
+[project]
+name = "job-tracker-cli"
+version = "0.1.0"
+description = "A CLI job applications tracker tool."
+authors = [{ name = "Nathan Tan" }]
+dependencies = ["typer", "rich"]
+
+[project.scripts]
+jobcli = "jobtrackercli.main:app"

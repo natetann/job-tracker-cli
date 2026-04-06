@@ -6,4 +6,4 @@ authors = [{ name = "Nathan Tan" }]
 dependencies = ["typer", "rich", "inquirerpy", "pyfiglet"]
 
 [project.scripts]
-jobcli = "jobtrackercli.main:app"
+jobcli = "jobtrackercli.main:start"

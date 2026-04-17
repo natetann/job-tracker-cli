@@ -32,7 +32,7 @@ def show_menu():
         message = "Select an action:",
         qmark='',
         amark='',
-        choices = ['Add Job', 'View Jobs', 'Update Job', 'Delete Job', 'Generate Sankey Graph', 'Exit'],
+        choices = ['Add Job', 'View Jobs', 'Update Job', 'Delete Job', 'Exit'],
         border = True
     ).execute()
     return menu

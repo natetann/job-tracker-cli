@@ -42,9 +42,6 @@ def menu():
                 delete_job(id)
                 utils.show_text(f"Job ID {id} deleted successfully!", "success")
 
-        elif choice == 'Generate Sankey Graph':
-            generate_sankey_graph()
-
         elif choice == 'Exit':
             utils.show_text("Goodbye!", "info")
             exit()

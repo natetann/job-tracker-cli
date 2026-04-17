@@ -3,6 +3,9 @@
 ## Description
 A command-line interface (CLI) tool for tracking job applications. It allows users to add, view, update, and delete job applications. The tool does this in a visually appealing way using the `rich` library for formatting and `InquirerPy` for interactive prompts. Storage is handled locally by `SQLite3`.
 
+![jobcli1](https://nathantan.com/assets/jobcli1.png)
+![jobcli2](https://nathantan.com/assets/jobcli2.png)
+
 ## Features
 - Add new job applications with details such as title, company, location, type, and status.
 - View all job applications in a formatted table.

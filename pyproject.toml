@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "job-tracker-cli"
 version = "0.1.0"
 description = "A command-line interface (CLI) tool for tracking job applications. It allows users to add, view, update, and delete job applications. The tool does this in a visually appealing way."
+readme = "README.md"
 authors = [{ name = "Nathan Tan" }]
 dependencies = ["typer", "rich", "inquirerpy", "pyfiglet"]
 requires-python = ">=3.10"

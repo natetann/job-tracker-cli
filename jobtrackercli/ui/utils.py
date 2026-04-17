@@ -1,3 +1,4 @@
+import rich
 import typer
 import pyfiglet
 from enum import Enum
@@ -5,6 +6,7 @@ from rich.text import Text
 from rich.panel import Panel
 from InquirerPy import inquirer
 from rich.console import Console
+from jobtrackercli.commands.view_jobs import get_by_id
 
 console = Console()
 
@@ -24,6 +26,7 @@ class JobType(str, Enum):
     CONTRACT = 'Contract'
     FREELANCE = 'Freelance'
 
+# ----------- WELCOME BANNER AND MENUS -----------
 def show_menu():
     menu = inquirer.select(
         message = "Select an action:",
@@ -43,7 +46,9 @@ def show_banner():
     # Rich text prints
     console.print(coloredText, justify="center")
     console.print(authorText, justify="center")
+# ----------- WELCOME BANNER AND MENUS -----------
 
+# ----------- PROMPT FUNCTIONS -----------
 def prompt_status():
     status = inquirer.select(
         message = 'Status:',
@@ -71,6 +76,42 @@ def prompt_job_details():
     type = prompt_type();
     status = prompt_status();
     return title, company, location, type, status
+
+def prompt_update_details():
+    id = typer.prompt('Job ID to update', type=int)
+    singleJob = get_by_id(id)
+
+    # If job not found
+    if not singleJob:
+        show_text("Job not found.", "error")
+        return None, None, None
+    rich.print(singleJob)
+
+    field = inquirer.select(
+        message = 'Select field to update:',
+        qmark='',
+        amark='',
+        choices = ['Title', 'Company', 'Location', 'Type', 'Status']
+    ).execute()
+
+    # Handle type and status separately for Inquirer selects
+    if field == 'Type':
+        type = prompt_type()
+        return id, field, type
+    elif field == 'Status':
+        status = prompt_status()
+        return id, field, status
+    fieldValue = typer.prompt(f'New value for {field}', type=str)
+    return id, field, fieldValue
+
+def prompt_delete_id():
+    id = typer.prompt('Job ID to delete', type=int)
+    if not get_by_id(id):
+        show_text("Job not found.", "error")
+        return None
+    return id
+# ----------- PROMPT FUNCTIONS -----------
+ 
 
 def show_text(operation: str, type: str):
     if type == 'success':

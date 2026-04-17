@@ -1,3 +1,4 @@
+import rich
 import typer
 from jobtrackercli.ui import utils
 from jobtrackercli.db.initialize_db import initialize_db
@@ -17,24 +18,38 @@ def start():
     menu()
     
 def menu():
-    menuChoice = utils.show_menu()
+    choice = utils.show_menu()
     while True:
-        if menuChoice == 'Add Job':
+        if choice == 'Add Job':
             title, company, location, type, status = utils.prompt_job_details()
             add_job(title, company, location, type, status)
             utils.show_text(f"{company} application added successfully!", "success")
-        elif menuChoice == 'View Jobs':
+
+        elif choice == 'View Jobs':
             view_jobs()
-        elif menuChoice == 'Update Job':
-            update_job()
-        elif menuChoice == 'Delete Job':
-            delete_job()
-        elif menuChoice == 'Generate Sankey Graph':
+
+        elif choice == 'Update Job':
+            view_jobs()
+            id, field, value = utils.prompt_update_details()
+            if id and field and value:
+                oldValue = update_job(id, field, value)
+                utils.show_text(f"Job ID {id}'s {field} updated from \"{oldValue}\" -> \"{value}\" successfully!", "success")
+
+        elif choice == 'Delete Job':
+            view_jobs()
+            id = utils.prompt_delete_id()
+            if id:
+                delete_job(id)
+                utils.show_text(f"Job ID {id} deleted successfully!", "success")
+
+        elif choice == 'Generate Sankey Graph':
             generate_sankey_graph()
-        elif menuChoice == 'Exit':
+
+        elif choice == 'Exit':
             utils.show_text("Goodbye!", "info")
             exit()
+
         else:
             utils.show_text("Invalid choice.", "error")
 
-        menuChoice = utils.show_menu()
+        choice = utils.show_menu()

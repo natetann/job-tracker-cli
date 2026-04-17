@@ -18,10 +18,10 @@ A command-line interface (CLI) tool for tracking job applications. It allows use
 
 ## Requirements
 - `Python 3.10` or higher, although it may work with earlier versions.
-- (Planned) `pip` for installing dependencies.
+- `pip` for installing dependencies.
 
 ## Installation
-### (Planned) Through pip:
+### Through pip:
 ```bash
 pip install job-tracker-cli
 ```

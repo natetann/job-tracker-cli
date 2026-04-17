@@ -8,6 +8,8 @@ A command-line interface (CLI) tool for tracking job applications. It allows use
 - View all job applications in a formatted table.
 - Update existing job applications by ID and specific fields.
 - Delete job applications by ID.
+- Color coded statuses: Applied, Interviewing, Offer, Rejected, Withdrawn, Ghosted, Accepted.
+- Job types: Full-time, Part-time, Internship, Contract, Freelance.
 - (Planned) Generate a Sankey graph to visualize job application statuses. 
 
 ## Requirements

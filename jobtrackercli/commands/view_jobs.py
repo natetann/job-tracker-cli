@@ -1,8 +1,19 @@
 import rich
 from rich.table import Table
+from rich.text import Text
 import sqlite3
 import jobtrackercli.ui.utils as utils
 import jobtrackercli.db.initialize_db as db
+
+status_colors = {
+    "Applied": "slate_blue3",
+    "Interviewing": "sky_blue3",
+    "Offer": "yellow",
+    "Rejected": "red",
+    "Withdrawn": "grey78",
+    "Ghosted": "grey78",
+    "Accepted": "green"
+}
 
 def view_jobs():
     with sqlite3.connect(db.DB_PATH) as connection:
@@ -21,7 +32,9 @@ def view_jobs():
     table.add_column("Status", justify="center", style="green")
     table.add_column("Date Added", justify="center", style="grey42")
     for job in jobs:
-        table.add_row(str(job[0]), job[1], job[2], job[3], job[4], job[5], job[6])
+        statusValue = job[5]
+        statusCell = Text(str(statusValue), style=status_colors.get(statusValue, "white"))
+        table.add_row(str(job[0]), job[1], job[2], job[3], job[4], statusCell, job[6])
     rich.print(table)
 
 def get_by_id(id: int):
@@ -41,5 +54,7 @@ def get_by_id(id: int):
     table.add_column("Type", justify="center", style="dark_cyan")
     table.add_column("Status", justify="center", style="green")
     table.add_column("Date Added", justify="center", style="grey42")
-    table.add_row(str(job[0]), job[1], job[2], job[3], job[4], job[5], job[6])
+    statusValue = job[5]
+    statusCell = Text(str(statusValue), style=status_colors.get(statusValue, "white"))
+    table.add_row(str(job[0]), job[1], job[2], job[3], job[4], statusCell, job[6])
     return table

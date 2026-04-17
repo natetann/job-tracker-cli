@@ -1,4 +1,3 @@
-import rich
 import typer
 from jobtrackercli.ui import utils
 from jobtrackercli.db.initialize_db import initialize_db

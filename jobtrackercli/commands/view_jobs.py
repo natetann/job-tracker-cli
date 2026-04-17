@@ -1,4 +1,5 @@
 import rich
+from rich.table import Table
 import sqlite3
 import jobtrackercli.ui.utils as utils
 import jobtrackercli.db.initialize_db as db
@@ -11,7 +12,7 @@ def view_jobs():
         jobs = cursor.fetchall()
     
     # Build table
-    table = rich.table.Table()
+    table = Table()
     table.add_column("ID", justify="center", style="grey42")
     table.add_column("Title", justify="center", style="grey93")
     table.add_column("Company", justify="center", style="cyan")
@@ -32,7 +33,7 @@ def get_by_id(id: int):
         return False
     
     # Build table
-    table = rich.table.Table()
+    table = Table()
     table.add_column("ID", justify="center", style="grey42")
     table.add_column("Title", justify="center", style="grey93")
     table.add_column("Company", justify="center", style="cyan")

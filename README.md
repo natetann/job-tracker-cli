@@ -5,6 +5,7 @@ A command-line interface (CLI) tool for tracking job applications. It allows use
 
 ![jobcli1](https://nathantan.com/assets/jobcli1.png)
 ![jobcli2](https://nathantan.com/assets/jobcli2.png)
+![jobcli3](https://nathantan.com/assets/jobcli3.png)
 
 ## Features
 - Add new job applications with details such as title, company, location, type, and status.
